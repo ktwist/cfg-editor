@@ -3,17 +3,20 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // Imports
 import Login from './pages/Login';
 import Register from './pages/Register';
+import './App.css';
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/" component={Login} />
-        <Route path="*">No</Route>
-      </Switch>
-    </Router>
+    <div className="App-wrapper">
+      <Router>
+        <Switch>
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/" component={Login} />
+          <Route path="*">No</Route>
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
