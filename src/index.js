@@ -4,9 +4,11 @@ import './index.css';
 import App from './App';
 import { RecoilRoot } from 'recoil';
 import reportWebVitals from './reportWebVitals';
+import RecoilizeDebugger from 'recoilize';
 
 ReactDOM.render(
     <RecoilRoot>
+      <RecoilizeDebugger />
       <App />
     </RecoilRoot>,
   document.getElementById('root')
