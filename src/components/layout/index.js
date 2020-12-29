@@ -4,8 +4,6 @@ import { checkToken, fetchToken } from '../../auth/auth-utils';
 import * as backendConfig from '../../auth/backend-conf';
 import { Redirect } from 'react-router-dom';
 
-// import { Helmet as Head } from 'react-helmet-async';
-
 // Loading Screen
 import Loading from './Loading';
 

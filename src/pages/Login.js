@@ -15,9 +15,10 @@ import Loading from '../components/layout/Loading';
 export default function Login() {
     const setUser = useSetRecoilState(userState);
     const [loggedIn, setLoggedIn] = useRecoilState(isLoggedIn);
+    const [submitting, setSubmitting] = useState(false);
     const [loading, setLoading] = useState(true);
-    const [username, setUsername] = useState();
-    const [password, setPassword] = useState();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [error, setError] = useState();
     let history = useHistory();
     
@@ -31,22 +32,24 @@ export default function Login() {
     }, [loggedIn, history])
 
     const handleSubmit = (event) => {
+        console.log('Login Values =========================>>> : ', event);
         event.preventDefault();
-        // login(values).then(res => {
-        //     if(res.success){
-        //         setLoggedIn(true);
-        //         setUser(res.data.user);
-        //         setSubmitting(false);
-        //         history.push('/editor');
-        //     }
-            console.log('Login Values =========================>>> : ', event);
-        // ).catch(err => {
-        //         setSubmitting(false);
-        // })
+        login({email, password}).then(res => {
+            if(res.success){
+                setLoggedIn(true);
+                setUser(res.data.user);
+                setSubmitting(false);
+                history.push('/editor');
+            }
+        }).catch(err => {
+                setSubmitting(false);
+        })
     };
 
     const handleChange = (e) => {
         console.log('Handle input change ==================>> : ', e.target.value);
+        e.target.name === 'email' && setEmail(e.target.value);
+        e.target.name === 'password' && setPassword(e.target.value);
     };
     return (
         <>
@@ -70,7 +73,7 @@ export default function Login() {
                     <input type="hidden" name="remember" value="true" />
                         <div className="login-form-inputs">
                             <div>
-                            <input aria-label="Username" name="email" type="email" required className="input-username" placeholder="username" onChange={handleChange} value={username}/>
+                            <input aria-label="Email" name="email" type="email" required className="input-username" placeholder="email" onChange={handleChange} value={email}/>
                             </div>
                             <div className="-mt-px">
                             <input aria-label="Password" name="password" type="password" required className="input-password" placeholder="Password" onChange={handleChange} value={password}/>

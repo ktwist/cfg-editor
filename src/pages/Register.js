@@ -15,74 +15,49 @@ import Loading from '../components/layout/Loading';
 export default function Register() {
     const setUser = useSetRecoilState(userState);
     const [loggedIn, setLoggedIn] = useRecoilState(isLoggedIn);
+    const [submitting, setSubmitting] = useState(false);
     const [loading, setLoading] = useState(true);
-    const [username, setUsername] = useState();
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [password2, setPassword2] = useState('');
+    const [submitDisabled, setSubmitDisabled] = useState(true)
     const [error, setError] = useState();
     let history = useHistory();
     
     useEffect(() => {
+        password === password2 ? setSubmitDisabled(false) : setSubmitDisabled(true);
+        console.log('pass01 and pass02 ==================>> : ', password, password2);
         if(loggedIn) {
             setLoading(false);
             history.push('/profile');
         } else {
             setLoading(false);
         }
-    }, [loggedIn, history])
+    }, [loggedIn, history, password, password2])
 
     const handleChange = (e) => {
-        console.log('Handle input change ==================>> : ', e.target.value);
+        console.log('Handle input change ==================>> : ', e.target.name);
+        e.target.name === 'email' && setEmail(e.target.value);
+        e.target.name === 'password' && setPassword(e.target.value);
+        e.target.name === 'password2' && setPassword2(e.target.value);
     };
 
     const handleSubmit = (event) => {
+        console.log('SUBMITTING ==================>> : ', email, password, password2);
         event.preventDefault();
-        register({username, email, password}).then(res => {
-            if(res.success){
-                // toast.dark(`🐴 Registered successfully...`, {
-                //     position: "top-right",
-                //     autoClose: 5000,
-                //     hideProgressBar: false,
-                //     closeOnClick: true,
-                //     pauseOnHover: true,
-                //     draggable: true,
-                //     progress: undefined,
-                //     });          
+        register({email, password, password2}).then(res => {
+            if(res.success){       
                 console.log('Register response ================== >>> : ', res);      
                 setLoggedIn(true);
                 setUser(res.data.user);
-                // setSubmitting(false);
                 history.push('/editor');
             }
         }).catch(err => {
-            // toast.dark(`❌ ${err}`, {
-            //     position: "top-right",
-            //     autoClose: 5000,
-            //     hideProgressBar: false,
-            //     closeOnClick: true,
-            //     pauseOnHover: true,
-            //     draggable: true,
-            //     progress: undefined,
-            //     });
-                // setSubmitting(false);
+                setSubmitting(false);
             console.log('Register response ================== >>> : ', err);  
         })
     };
 
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     // login(values).then(res => {
-    //     //     if(res.success){
-    //     //         setLoggedIn(true);
-    //     //         setUser(res.data.user);
-    //     //         setSubmitting(false);
-    //     //         history.push('/editor');
-    //     //     }
-    //         console.log('Login Values =========================>>> : ', event);
-    //     // ).catch(err => {
-    //     //         setSubmitting(false);
-    //     // })
-    // };
     return (
         <>
         {loading ? <Loading /> : ( <>
@@ -100,32 +75,22 @@ export default function Register() {
                         </Link>
                     </p>
                     </div>
-                    {/* <Formik
-                        initialValues={{
-                            name: "",
-                            email: "",
-                            password: "",
-                        }}
-                        onSubmit={handleSubmit}
-                        >
-                    {({values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting}) => ( */}
     
                        <form onSubmit={handleSubmit} className="mt-8">
-                        <input type="hidden" name="remember" value="true" />
                             <div className="rounded-md shadow-sm">
 
-                                <input aria-label="Name" name="name" type="text" required className="appearance-none" placeholder="Name" onChange={handleChange} value={username}/>
-                     
-                                <input aria-label="Email" name="email" type="text" required className="appearance-none" placeholder="Name" onChange={handleChange} value={email}/>
+                                <input aria-label="Email" name="email" type="email" required className="appearance-none" placeholder="email" onChange={handleChange} value={email}/>
 
                                 <div className="-mt-px">
-                                <input aria-label="Password" name="password" type="password" required className="appearance-none" placeholder="Password" onChange={handleChange} value={password}/>
+                                <input aria-label="Password" name="password" type="password" required className="appearance-none" placeholder="password" onChange={handleChange} value={password}/>
+                                <div className="-mt-px"></div>
+                                <input aria-label="Password" name="password2" type="password" required className="appearance-none" placeholder="retype password" onChange={handleChange} value={password2}/>
                                 
                                 </div>
                             </div>
             
                             <div className="mt-6">
-                                <button type="submit" className="group" >
+                                <button type="submit" className="group" disabled={submitDisabled}>
                                 <span className="absolute ">
                                     <svg className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400 transition ease-in-out duration-150" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />

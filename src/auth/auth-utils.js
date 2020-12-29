@@ -55,8 +55,9 @@ export const login = async (credentials = {}) => {
 }
 
 export const register = async (details = {}) => {
+    console.table('DETAILS submit ===============>>> : ', details);
     localStorage.removeItem("token");
-    if (!details || !details.name || !details.email || !details.password) {
+    if (!details || !details.email || !details.password || !details.password2) {
         throw new Error("Some fields are missing.")
     }
     const data = await makeRequest(backendConfig.backendURL + backendConfig.routes.register, details, 'POST');
