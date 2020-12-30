@@ -49,7 +49,10 @@ export const login = async (credentials = {}) => {
         createLocalstorageItem("token", JSON.stringify({token: data.token, expiry: new Date().getTime() + 60 * 60 * 1000}));
         return {
             success: true,
-            data: data
+            data: { ...data,
+                email: credentials.email,
+                password: credentials.password
+            }
         };
     }
 }
@@ -76,4 +79,23 @@ export const register = async (details = {}) => {
 export const logout = async () => {
     localStorage.removeItem("token");
     return true;
+}
+
+export const saveConfig = async (details = {}) => {
+    console.table('DETAILS submit ===============>>> : ', details);
+    localStorage.removeItem("token");
+    if (!details || !details.email || !details.password || !details.password2) {
+        throw new Error("Some fields are missing.")
+    }
+    const data = await makeRequest(backendConfig.backendURL + backendConfig.routes.register, details, 'POST');
+
+    if (data.error) {
+        throw (new Error(data.error));
+    } else {
+        createLocalstorageItem("token", JSON.stringify({token: data.token, expiry: new Date().getTime() + 60 * 60 * 1000}));
+        return {
+            success: true,
+            data: data
+        };
+    }
 }

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userState, isLoggedIn } from '../auth/user-atoms';
 
+import './Navigation.css';
+
 export default function Navigation() {
     const loggedIn = useRecoilValue(isLoggedIn);
     const user = useRecoilValue(userState);
@@ -25,21 +27,19 @@ export default function Navigation() {
     ];
 
     return (
-        <div className="nav-wrapper">
-            <nav className="navigation">
-            {links.map(link => {
-                if(!loggedIn && link.protected){
-                    return null;
-                } else {
-                    return (
-                        <Link to={link.route} key={link.name} className="nav-link">
-                            {link.name}
-                        </Link>
-                        
-                    )
-                }
-            })}
-            </nav>   
-        </div>
+        <nav className="navigation">
+        {links.map(link => {
+            if(!loggedIn && link.protected){
+                return null;
+            } else {
+                return (
+                    <Link to={link.route} key={link.name} className="nav-link">
+                        {link.name}
+                    </Link>
+                    
+                )
+            }
+        })}
+        </nav>   
     )
 }

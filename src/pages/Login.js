@@ -12,6 +12,8 @@ import logo from '../assets/logo.png';
 // Loading
 import Loading from '../components/layout/Loading';
 
+import './LoginRegister.css'
+
 export default function Login() {
     const setUser = useSetRecoilState(userState);
     const [loggedIn, setLoggedIn] = useRecoilState(isLoggedIn);
@@ -39,6 +41,7 @@ export default function Login() {
                 setLoggedIn(true);
                 setUser(res.data.user);
                 setSubmitting(false);
+                console.log('Login Values =========================>>> : ', res);
                 history.push('/editor');
             }
         }).catch(err => {
@@ -55,40 +58,25 @@ export default function Login() {
         <>
         {loading ? <Loading /> : ( <>
             <Layout title="Login">
-            <div className="login-wrapper">
-                <div className="max-w-md w-full">
-                    <div>
+                <div className="login-wrapper">
                     <img className="logo" src={logo} alt="Logo" />
-                    <h2 className="header">
+                    <h2 className="title">
                         Sign in
                     </h2>
-                    <p className="register-wrap">
-                        Or <Link to="/register" className="link">
-                        register here.
-                        </Link>
-                    </p>
-                    </div>
-    
-                    <form onSubmit={handleSubmit} className="login-form">
-                    <input type="hidden" name="remember" value="true" />
-                        <div className="login-form-inputs">
-                            <div>
-                            <input aria-label="Email" name="email" type="email" required className="input-username" placeholder="email" onChange={handleChange} value={email}/>
-                            </div>
-                            <div className="-mt-px">
-                            <input aria-label="Password" name="password" type="password" required className="input-password" placeholder="Password" onChange={handleChange} value={password}/>
-                            </div>
-                        </div>
 
-                        <div className="submit-wrapp">
-                            <button type="submit" className="group" >
-                            {/* {isSubmitting ? "Signing in..." : "Sign in"} */}
-                                Sign in
-                            </button>
-                        </div>
+                    <form onSubmit={handleSubmit} className="vertical-form">
+                        <input aria-label="Email" name="email" type="email" required className="input" placeholder="email" onChange={handleChange} value={email}/>
+                        <input aria-label="Password" name="password" type="password" required className="input" placeholder="Password" onChange={handleChange} value={password}/>
+
+                        <button type="submit" className="btn" >
+                        {/* {isSubmitting ? "Signing in..." : "Sign in"} */}
+                            Sign in
+                        </button>
+                        <p>
+                            Or <Link to="/register" className="link">register here.</Link>
+                        </p>
                     </form>
                 </div>
-            </div>
             </Layout>
         </>)}
         </>

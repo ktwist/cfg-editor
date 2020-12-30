@@ -1,13 +1,14 @@
-.App {
-  text-align: center;
-}
-
 .App-wrapper {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 0.3fr 3.5fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "navigation navigation navigation navigation"
+    "content content content content";
   background-color: #2D2926;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
@@ -15,4 +16,69 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.btn {
+  color: #FFFFFF;
+  font-family: Arial;
+  font-size: .8em;
+  font-weight: 300;
+  padding: .4em 2em;
+  border-radius: .2em;
+  background-color: #1E62D0;
+  box-shadow: 0px 0px 5px 2px #00000038;
+  /* border: solid #337FED 1px; */
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  border: 0px none;
+  margin: .2em;
+}
+
+.btn:hover {
+  background: #3D94F6;
+  border: 0px none;
+  text-decoration: none;
+  box-shadow: 0px 0px 0px 0px #00000038;
+}
+
+.input {
+  color: #FFFFFF;
+  font-family: Arial;
+  font-size: .8em;
+  font-weight: 300;
+  padding: .4em;
+  border-radius: .2em;
+  background-color: #1e62d026;
+  box-shadow: 0px 0px 5px 2px #00000038;
+  border: 1px solid #337FED;
+  display: inline-block;
+  margin: .2em;
+}
+
+.input:focus {
+  background-color: #1e62d012;
+  border-color: #468beb;
+  text-decoration: none;
+}
+
+.link {
+  color: #61dafb;
+  font-family: Arial;
+  font-size: .8em;
+  font-weight: 300;
+  padding: .4em;
+  border-radius: .2em;
+  background-color: #393633;
+  display: inline-block;
+  margin: .2em;
+}
+
+.link:hover {
+  color: #2d7a8f;
+}
+
+.title {
+  font-weight: 100;
 }

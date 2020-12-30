@@ -12,6 +12,8 @@ import logo from '../assets/logo.png';
 // Loading
 import Loading from '../components/layout/Loading';
 
+import './LoginRegister.css'
+
 export default function Register() {
     const setUser = useSetRecoilState(userState);
     const [loggedIn, setLoggedIn] = useRecoilState(isLoggedIn);
@@ -62,50 +64,29 @@ export default function Register() {
         <>
         {loading ? <Loading /> : ( <>
             <Layout title="Register">
-            <div className="py-4 ">
-                <div className="max-w">
-                    <div>
-                    <img className="mx-auto" src={logo} alt="Logo" />
-                    <h2 className="mt-6">
+                <div className="register-wrapper">
+
+                    <img className="logo" src={logo} alt="Logo" />
+                    <h2 className="title">
                         Register a new account
                     </h2>
+                        
+                    <form onSubmit={handleSubmit} className="vertical-form">
+                            <input aria-label="Email" name="email" type="email" required className="input" placeholder="email" onChange={handleChange} value={email}/>
+                            <input aria-label="Password" name="password" type="password" required className="input" placeholder="password" onChange={handleChange} value={password}/>
+                            <input aria-label="Password" name="password2" type="password" required className="input" placeholder="retype password" onChange={handleChange} value={password2}/>
+
+                            <button type="submit" className="btn" disabled={submitDisabled}>
+                            
+                            {/* {isSubmitting ? "Registering..." : "Register"} */}
+                            register
+                            </button>
+                    </form>
                     <p className="mt-2 text-center text-sm leading-5 text-gray-600">
-                        Or <Link to="/login" className="font-medium ">
-                        login here.
+                        Or <Link to="/login" className="link ">login here.
                         </Link>
                     </p>
-                    </div>
-    
-                       <form onSubmit={handleSubmit} className="mt-8">
-                            <div className="rounded-md shadow-sm">
-
-                                <input aria-label="Email" name="email" type="email" required className="appearance-none" placeholder="email" onChange={handleChange} value={email}/>
-
-                                <div className="-mt-px">
-                                <input aria-label="Password" name="password" type="password" required className="appearance-none" placeholder="password" onChange={handleChange} value={password}/>
-                                <div className="-mt-px"></div>
-                                <input aria-label="Password" name="password2" type="password" required className="appearance-none" placeholder="retype password" onChange={handleChange} value={password2}/>
-                                
-                                </div>
-                            </div>
-            
-                            <div className="mt-6">
-                                <button type="submit" className="group" disabled={submitDisabled}>
-                                <span className="absolute ">
-                                    <svg className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400 transition ease-in-out duration-150" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-                                    </svg>
-                                </span>
-                                {/* {isSubmitting ? "Registering..." : "Register"} */}
-                                register
-                                </button>
-                            </div>
-                        </form>
-                    {/* )}
-                     </Formik> */}
-                    
                 </div>
-            </div>
             </Layout>
         </>)}
         </>
