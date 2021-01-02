@@ -14,9 +14,31 @@ async function makeRequest(url = '', data = {}, type = '', headers = { 'Content-
     return response.json();
 }
 
+async function makeAuthorisedRequest(
+    url = '', 
+    data = {}, 
+    type = '', 
+    headers = { 
+        'Content-Type': 'application/json',
+        Accept: "*/*",
+        Authorization: fetchToken(),
+    } ) {
+    const response = await fetch(url, {
+        method: type,
+        // mode: 'cors',
+        // cache: 'no-cache',
+        // credentials: 'same-origin',
+        headers: headers,
+        // redirect: 'follow',
+        // referrerPolicy: 'no-referrer',
+        body: JSON.stringify(data)
+    });
+    return response.json();
+}
+
 export const checkToken = () => {
     const token = localStorage.getItem("token");
-    return !!token && String(token) !== "null" && String(token) !== "undefined" && JSON.parse(token).expiry > new Date().getTime();
+    return !!token && String(token) !== "null" && String(token) !== "undefined" && token;
 }
 
 async function createLocalstorageItem(key, value) {
@@ -26,14 +48,10 @@ async function createLocalstorageItem(key, value) {
 
 export function fetchToken() {
     const token = localStorage.getItem("token");
-    if(new Date().getTime() > token.expiry) {
-        logout();
-        throw new Error("Token expired.");
-    }
     if(!token){
         throw new Error("Token doesn't exist.")
     }
-    return { token: JSON.parse(token).token };
+    return token;
 }
 
 export const login = async (credentials = {}) => {
@@ -46,7 +64,8 @@ export const login = async (credentials = {}) => {
     if (data.error) {
         throw (new Error(data.error));
     } else {
-        createLocalstorageItem("token", JSON.stringify({token: data.token, expiry: new Date().getTime() + 60 * 60 * 1000}));
+        console.log("Token login request ===============>>> : ", data);
+        createLocalstorageItem("token", data.token);
         return {
             success: true,
             data: { ...data,
@@ -82,17 +101,16 @@ export const logout = async () => {
 }
 
 export const saveConfig = async (details = {}) => {
-    console.table('DETAILS submit ===============>>> : ', details);
-    localStorage.removeItem("token");
-    if (!details || !details.email || !details.password || !details.password2) {
+    console.table('DETAILS saveConfig ===============>>> : ', details);
+    if (!details || !details.name || !details.version || !details.data) {
         throw new Error("Some fields are missing.")
     }
-    const data = await makeRequest(backendConfig.backendURL + backendConfig.routes.register, details, 'POST');
+    const data = await makeAuthorisedRequest(backendConfig.backendURL + backendConfig.routes.config, details, 'POST');
 
     if (data.error) {
         throw (new Error(data.error));
     } else {
-        createLocalstorageItem("token", JSON.stringify({token: data.token, expiry: new Date().getTime() + 60 * 60 * 1000}));
+        console.table('Config save sucess  ===============>>> : ', data);
         return {
             success: true,
             data: data
