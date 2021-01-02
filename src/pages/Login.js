@@ -27,7 +27,7 @@ export default function Login() {
     useEffect(() => {
         if(loggedIn) {
             setLoading(false);
-            history.push('/editor');
+            history.push('/config-list');
         } else {
             setLoading(false);
         }

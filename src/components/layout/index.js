@@ -19,26 +19,27 @@ export default function Layout({title, auth=false, authFallback="/login", childr
     const [loading, setLoading] = useState(auth);
 
     useEffect(() => {
-        // console.log(loggedIn);
+        console.log(loggedIn);
         if(checkToken()){
             setLoggedIn(true);
             setLoading(false);
             const token = fetchToken();
-            fetch(backendConfig.backendURL + backendConfig.routes.fetchUser, {
+            fetch(backendConfig.backendURL + backendConfig.routes.config, {
                 method: "GET",
                 // mode: 'no-cors',
                 // cache: 'no-cache',
                 // credentials: 'same-origin',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token.token}`
+                    'Authorization': token
                 },
-                redirect: 'follow',
-                referrerPolicy: 'no-referrer',
+                // redirect: 'follow',
+                // referrerPolicy: 'no-referrer',
             })
             .then(res => res.json())
             .then(res => {
-                setUserData(res.user);
+                console.log("Config list --------------------<<<>>>> : ", res)
+                setUserData(res);
             });
         } else {
             setLoading(false);

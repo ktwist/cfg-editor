@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Editor from './pages/Editor';
+import ConfigList from './pages/ConfigList';
 import './App.css';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/editor" component={Editor} />
+          <Route exact path="/config-list" component={ConfigList} />
           <Route exact path="/" component={Login} />
           <Route path="*">No</Route>
         </Switch>

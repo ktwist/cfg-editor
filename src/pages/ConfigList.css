@@ -1,0 +1,42 @@
+.list-wrapper {
+  display: flex;
+  overflow-y: scroll;
+}
+
+.config-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.config-list li {
+  counter-increment: step-counter;
+  margin-bottom: .155em;
+  display: grid;
+  grid-template-columns: 0.3fr 1fr;
+  grid-gap: .3em;
+  background-color: #1e62d0;
+  padding: 0 .5em 0 0;
+  border-radius: 0.13em;
+  opacity: .7;
+}
+
+.config-list li:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.config-list li::before {
+  justify-self: stretch;
+  content: counter(step-counter);
+  margin-right: .1em;
+  font-size: 80%;
+  background-color: #3d94f6;
+  color: white;
+  box-shadow: 3px 1px 2px 0px #39363375;
+  font-weight: bold;
+  padding: 0.2em .8em;
+  border-radius: .2em;
+  text-align: end;
+}
+  
