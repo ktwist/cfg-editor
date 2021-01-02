@@ -1,6 +1,6 @@
 .list-wrapper {
   display: flex;
-  overflow-y: scroll;
+  overflow: hi;
 }
 
 .config-list {
