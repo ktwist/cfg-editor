@@ -1411,6 +1411,14 @@
   dependencies:
     mkdirp "^1.0.4"
 
+"@opuscapita/react-perfect-scrollbar@^3.0.4":
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/@opuscapita/react-perfect-scrollbar/-/react-perfect-scrollbar-3.0.4.tgz#4d63c9d1a41872386aeba5cc9a56ccd23ef46afd"
+  integrity sha512-VcqhvtyfRqKkAVqhLH50TtnocgNgWt/R0EtBYJtTXSnAILXBpXqD7Fo/U0nfATtjKxUI1EwtilHARACkODgajg==
+  dependencies:
+    classlist-polyfill "1.2.0"
+    perfect-scrollbar "1.4.0"
+
 "@pmmmwh/react-refresh-webpack-plugin@0.4.2":
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.4.2.tgz#1f9741e0bde9790a0e13272082ed7272a083620d"
@@ -3179,6 +3187,11 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
+
+classlist-polyfill@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/classlist-polyfill/-/classlist-polyfill-1.2.0.tgz#935bc2dfd9458a876b279617514638bcaa964a2e"
+  integrity sha1-k1vC39lFiodrJ5YXUUY4vKqWSi4=
 
 clean-css@^4.2.3:
   version "4.2.3"
@@ -7927,6 +7940,11 @@ pbkdf2@^3.0.3:
     ripemd160 "^2.0.1"
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
+
+perfect-scrollbar@1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/perfect-scrollbar/-/perfect-scrollbar-1.4.0.tgz#5d014ef9775e1f43058a1dbae9ed1daf0e7091f1"
+  integrity sha512-/2Sk/khljhdrsamjJYS5NjrH+GKEHEwh7zFSiYyxROyYKagkE4kSn2zDQDRTOMo8mpT2jikxx6yI1dG7lNP/hw==
 
 performance-now@^2.1.0:
   version "2.1.0"
