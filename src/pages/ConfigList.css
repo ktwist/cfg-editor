@@ -1,6 +1,6 @@
 .list-wrapper {
   display: flex;
-  overflow: hi;
+  overflow: hidden;
 }
 
 .config-list {
