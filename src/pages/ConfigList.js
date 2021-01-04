@@ -54,7 +54,7 @@ export default function ConfigList() {
                     </ol>
                 </PerfectScrollbar>
                 <Switch>
-                    <Route path={`${path}/:topicId`}>
+                    <Route path={`${path}/:configId`}>
                         <Editor />
                     </Route>
                 </Switch>

@@ -1,4 +1,4 @@
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 
 // State Imports
 import { useRecoilValue } from 'recoil';
@@ -10,7 +10,7 @@ export default function Navigation() {
     const loggedIn = useRecoilValue(isLoggedIn);
     const user = useRecoilValue(userState);
     const history = useHistory();
-
+    let { path, url } = useRouteMatch();
     console.log("this is history =================>> : ", history.location.pathname);
 
     const links = [
@@ -44,7 +44,7 @@ export default function Navigation() {
                         )
                     }
                 })}
-                <Link to={'config-list/new_config'}  className={`nav-link`}>
+                <Link to={`${path}/new-config`}  className={`nav-link`}>
                     + new config
                 </Link>
             </div>
