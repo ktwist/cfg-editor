@@ -9,3 +9,8 @@ export const isLoggedIn = atom({
     key: 'isLoggedIn',
     default: false,
 })
+
+export const currentConfig = atom({
+    key: 'currentConfig',
+    default: null,
+})

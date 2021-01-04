@@ -31,7 +31,7 @@ async function makeAuthorisedRequest(
         headers: headers,
         // redirect: 'follow',
         // referrerPolicy: 'no-referrer',
-        body: JSON.stringify(data)
+        body: type !== 'GET' ? JSON.stringify(data) : null
     });
     return response.json();
 }
@@ -111,6 +111,24 @@ export const saveConfig = async (details = {}) => {
         throw (new Error(data.error));
     } else {
         console.table('Config save sucess  ===============>>> : ', data);
+        return {
+            success: true,
+            data: data
+        };
+    }
+}
+
+export const loadConfig = async (details = {}) => {
+    console.table('DETAILS saveConfig ===============>>> : ', details);
+    if (!details || !details.name || !details.version) {
+        throw new Error("Some fields are missing.")
+    }
+    const data = await makeAuthorisedRequest(backendConfig.backendURL + backendConfig.routes.config + `/${details.name}?version=${details.version}`, {}, 'GET');
+
+    if (data.error) {
+        throw (new Error(data.error));
+    } else {
+        console.table('Config load sucess  ===============>>> : ', data);
         return {
             success: true,
             data: data

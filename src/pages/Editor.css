@@ -1,4 +1,5 @@
 .editor-wrapper {
+    grid-area: editor-display;
     display: flex;
     flex-direction: column;
     overflow: hidden;

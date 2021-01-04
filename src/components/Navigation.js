@@ -26,12 +26,7 @@ export default function Navigation() {
             name: 'Config List',
             route: '/config-list',
             protected: true,
-        },
-        {
-            name: 'Config Editor',
-            route: '/editor',
-            protected: true,
-        },
+        }
     ];
 
     return (
@@ -49,6 +44,9 @@ export default function Navigation() {
                         )
                     }
                 })}
+                <Link to={'config-list/new_config'}  className={`nav-link`}>
+                    + new config
+                </Link>
             </div>
         {loggedIn ? (<>
             <Link to="/logout">

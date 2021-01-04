@@ -1,6 +1,4 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
-// Imports
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Editor from './pages/Editor';
@@ -15,11 +13,13 @@ function App() {
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/editor" component={Editor} />
-          <Route exact path="/config-list" component={ConfigList} />
+          {/* <Route path="/editor/:cfg-name" children={<Editor />} /> */}
+          <Route path="/config-list" >
+            <ConfigList />
+          </Route>
           <Route exact path="/logout" component={Logout} />
           <Route exact path="/" component={Login} />
-          <Route path="*">No</Route>
+          {/* <Route path="*">No</Route> */}
         </Switch>
       </Router>
     </div>
