@@ -14,9 +14,12 @@ export default function ConfigList() {
     return (
         <Layout title="Profile" auth={true}>
             <div className="list-wrapper">
+                <h3 className="title">
+                    Configuration List
+                </h3>
                 <PerfectScrollbar>
                     <ol className="config-list">
-                    {user.map(item => {
+                    {user && user.map(item => {
                         return <li>{item.config_name} v: {item.config_version}</li>
                     })}
                     </ol>

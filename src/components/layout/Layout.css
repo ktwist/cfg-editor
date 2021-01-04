@@ -7,4 +7,6 @@
     grid-template-areas: 
     'navigation'
     'footer';
+    /* border-top: .2em solid #393633; */
+    border-top: .2em solid #f3ab76;
 }

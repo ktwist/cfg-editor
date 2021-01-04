@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Editor from './pages/Editor';
 import ConfigList from './pages/ConfigList';
+import Logout from './pages/Logout';
 import './App.css';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/editor" component={Editor} />
           <Route exact path="/config-list" component={ConfigList} />
+          <Route exact path="/logout" component={Logout} />
           <Route exact path="/" component={Login} />
           <Route path="*">No</Route>
         </Switch>

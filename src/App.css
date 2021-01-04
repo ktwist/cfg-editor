@@ -2,7 +2,7 @@
   display: grid;
   height: 100vh;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 0.3fr 3.5fr;
+  grid-template-rows: 0.23fr 3.5fr;
   gap: 0px 0px;
   grid-template-areas:
     "navigation navigation navigation navigation"
@@ -81,4 +81,13 @@
 
 .title {
   font-weight: 100;
+}
+/* Scroll container library full width */
+.oc-scrollbar-container {
+  width: 100%;
+  border: .1em solid #59c6e4;
+  border-radius: .2em;
+  padding: .1em;
+  box-shadow: inset 0 0 4px 3px black;
+  background-color: #211f1e;
 }

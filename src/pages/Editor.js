@@ -8,6 +8,8 @@ import { checkToken, fetchToken } from '../auth/auth-utils';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../auth/user-atoms';
 
+import './Editor.css'
+
 export default function Editor() {
     const user = useRecoilValue(userState);
     const [name, setName] = useState('');
@@ -68,10 +70,10 @@ export default function Editor() {
 
     return (
         <Layout title="Profile" auth={true}>
-            <div className="register-wrapper">
+            <div className="editor-wrapper">
 
                 <h3 className="title">
-                    Editor
+                    Configuration Editor
                 </h3>
                 
                 <form onSubmit={handleSubmit} className="vertical-form">

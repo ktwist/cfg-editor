@@ -1,4 +1,29 @@
 .navigation {
     grid-area: navigation;
     display: flex;
+    background-color: #59c6e4;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 .5em;
+}
+
+.nav-link, .nav-link-selected {
+    color: #61dafb;
+    font-family: Arial;
+    font-size: .8em;
+    font-weight: 300;
+    padding: .4em .8em;
+    border-radius: .2em;
+    background-color: #393633;
+    display: inline-block;
+    margin: .2em;
+    text-decoration: none;
+}
+    
+.nav-link:hover {
+    color: #2d7a8f;
+}
+
+.nav-link-selected {
+    box-shadow: 0 1rem 0 0 #393633;
 }
