@@ -59,7 +59,6 @@ export const login = async (credentials = {}) => {
     if (data.error) {
         throw (new Error(data.error));
     } else {
-        console.log("Token login request ===============>>> : ", data);
         createLocalstorageItem("token", data.token);
         return {
             success: true,

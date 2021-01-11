@@ -28,7 +28,6 @@ export default function Register() {
     
     useEffect(() => {
         password === password2 ? setSubmitDisabled(false) : setSubmitDisabled(true);
-        console.log('pass01 and pass02 ==================>> : ', password, password2);
         if(loggedIn) {
             setLoading(false);
             history.push('/profile');
@@ -38,25 +37,22 @@ export default function Register() {
     }, [loggedIn, history, password, password2])
 
     const handleChange = (e) => {
-        console.log('Handle input change ==================>> : ', e.target.name);
         e.target.name === 'email' && setEmail(e.target.value);
         e.target.name === 'password' && setPassword(e.target.value);
         e.target.name === 'password2' && setPassword2(e.target.value);
     };
 
     const handleSubmit = (event) => {
-        console.log('SUBMITTING ==================>> : ', email, password, password2);
         event.preventDefault();
         register({email, password, password2}).then(res => {
             if(res.success){       
-                console.log('Register response ================== >>> : ', res);      
                 setLoggedIn(true);
                 setUser(res.data.user);
                 history.push('/editor');
             }
         }).catch(err => {
                 setSubmitting(false);
-            console.log('Register response ================== >>> : ', err);  
+            console.log('Register errerror  : ', err);  
         })
     };
 

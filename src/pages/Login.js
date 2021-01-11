@@ -34,14 +34,12 @@ export default function Login() {
     }, [loggedIn, history])
 
     const handleSubmit = (event) => {
-        console.log('Login Values =========================>>> : ', event);
         event.preventDefault();
         login({email, password}).then(res => {
             if(res.success){
                 setLoggedIn(true);
                 setUser(res.data.user);
                 setSubmitting(false);
-                console.log('Login Values =========================>>> : ', res);
                 history.push('/config-list');
             }
         }).catch(err => {
@@ -50,7 +48,6 @@ export default function Login() {
     };
 
     const handleChange = (e) => {
-        console.log('Handle input change ==================>> : ', e.target.value);
         e.target.name === 'email' && setEmail(e.target.value);
         e.target.name === 'password' && setPassword(e.target.value);
     };

@@ -18,24 +18,16 @@ export default function ConfigList() {
     const user = useRecoilValue(userState);
 
     const loadConfiguration = (name, version) => {
-        console.log('Loaded Config name, version =========================>>> : ', name, version);
         loadConfig({name, version}).then(res => {
             if(res.success){
-                // setLoggedIn(true);
-                // setUser(res.data.user);
-                // setSubmitting(false);
-                console.log('Loaded Config =========================>>> : ', res);
                 setSelectedConfig(res.data);
-                // history.push('/editor');
             }
         }).catch(err => {
-                // setSubmitting(false);
-                console.log('Loaded Config errors =========================>>> : ', err);
+                console.log(err)
         })
     }
 
     let { path, url } = useRouteMatch();
-    console.log("user config states ====================>>> : ", user);
     return (
         <Layout title="Profile" auth={true}>
                 

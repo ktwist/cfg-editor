@@ -11,8 +11,7 @@ export default function Navigation() {
     const setCurrentConfig = useSetRecoilState(currentConfig);
     const user = useRecoilValue(userState);
     const history = useHistory();
-    let { path, url } = useRouteMatch();
-    console.log("this is history =================>> : ", history.location.pathname);
+    let { path } = useRouteMatch();
 
     const links = [
         {

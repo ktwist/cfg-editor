@@ -26,19 +26,13 @@ export default function Layout({title, auth=false, authFallback="/login", childr
             const token = fetchToken();
             fetch(backendConfig.backendURL + backendConfig.routes.config, {
                 method: "GET",
-                // mode: 'no-cors',
-                // cache: 'no-cache',
-                // credentials: 'same-origin',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': token
                 },
-                // redirect: 'follow',
-                // referrerPolicy: 'no-referrer',
             })
             .then(res => res.json())
             .then(res => {
-                console.log("Config list --------------------<<<>>>> : ", res)
                 //Show only my configs
                 //const myConfigs = res.filter((el) => el.config_name.split('_')[el.config_name.split('_').length-1] === "erm")
                 setUserData(res);
