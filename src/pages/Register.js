@@ -17,13 +17,12 @@ import './LoginRegister.css'
 export default function Register() {
     const setUser = useSetRecoilState(userState);
     const [loggedIn, setLoggedIn] = useRecoilState(isLoggedIn);
-    const [submitting, setSubmitting] = useState(false);
+    // const [submitting, setSubmitting] = useState(false);
     const [loading, setLoading] = useState(true);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
     const [submitDisabled, setSubmitDisabled] = useState(true)
-    const [error, setError] = useState();
     let history = useHistory();
     
     useEffect(() => {
@@ -51,7 +50,7 @@ export default function Register() {
                 history.push('/editor');
             }
         }).catch(err => {
-                setSubmitting(false);
+                // setSubmitting(false);
             console.log('Register errerror  : ', err);  
         })
     };

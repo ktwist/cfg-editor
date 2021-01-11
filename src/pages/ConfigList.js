@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import { Switch, Link, Route, useRouteMatch } from 'react-router-dom';
 import { loadConfig } from "../auth/auth-utils";
 import Layout from '../components/layout/index';
@@ -6,14 +5,14 @@ import Editor from './Editor';
 import PerfectScrollbar from '@opuscapita/react-perfect-scrollbar';
 
 // State Imports
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userState, currentConfig } from '../auth/user-atoms';
 
 import './ConfigList.css'
 
 export default function ConfigList() {
 
-    const [selectedConfig, setSelectedConfig] = useRecoilState(currentConfig);
+    const setSelectedConfig = useSetRecoilState(currentConfig);
 
     const user = useRecoilValue(userState);
 
@@ -27,7 +26,7 @@ export default function ConfigList() {
         })
     }
 
-    let { path, url } = useRouteMatch();
+    let { path } = useRouteMatch();
     return (
         <Layout title="Profile" auth={true}>
                 

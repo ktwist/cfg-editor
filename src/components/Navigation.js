@@ -2,14 +2,13 @@ import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 
 // State Imports
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { userState, isLoggedIn, currentConfig } from '../auth/user-atoms';
+import { isLoggedIn, currentConfig } from '../auth/user-atoms';
 
 import './Navigation.css';
 
 export default function Navigation() {
     const loggedIn = useRecoilValue(isLoggedIn);
     const setCurrentConfig = useSetRecoilState(currentConfig);
-    const user = useRecoilValue(userState);
     const history = useHistory();
     let { path } = useRouteMatch();
 

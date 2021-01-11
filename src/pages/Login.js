@@ -17,11 +17,10 @@ import './LoginRegister.css'
 export default function Login() {
     const setUser = useSetRecoilState(userState);
     const [loggedIn, setLoggedIn] = useRecoilState(isLoggedIn);
-    const [submitting, setSubmitting] = useState(false);
+    // const [submitting, setSubmitting] = useState(false);
     const [loading, setLoading] = useState(true);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState();
     let history = useHistory();
     
     useEffect(() => {
@@ -39,11 +38,12 @@ export default function Login() {
             if(res.success){
                 setLoggedIn(true);
                 setUser(res.data.user);
-                setSubmitting(false);
+                // setSubmitting(false);
                 history.push('/config-list');
             }
         }).catch(err => {
-                setSubmitting(false);
+                // setSubmitting(false);
+                console.log(err)
         })
     };
 
