@@ -34,7 +34,6 @@ export default function ConfigList() {
         })
     }
 
-    
     let { path, url } = useRouteMatch();
     console.log("user config states ====================>>> : ", user);
     return (

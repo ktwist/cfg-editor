@@ -25,12 +25,7 @@ async function makeAuthorisedRequest(
     } ) {
     const response = await fetch(url, {
         method: type,
-        // mode: 'cors',
-        // cache: 'no-cache',
-        // credentials: 'same-origin',
         headers: headers,
-        // redirect: 'follow',
-        // referrerPolicy: 'no-referrer',
         body: type !== 'GET' ? JSON.stringify(data) : null
     });
     return response.json();
@@ -129,6 +124,7 @@ export const loadConfig = async (details = {}) => {
         throw (new Error(data.error));
     } else {
         console.table('Config load sucess  ===============>>> : ', data);
+
         return {
             success: true,
             data: data

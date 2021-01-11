@@ -42,7 +42,7 @@ export default function Login() {
                 setUser(res.data.user);
                 setSubmitting(false);
                 console.log('Login Values =========================>>> : ', res);
-                history.push('/editor');
+                history.push('/config-list');
             }
         }).catch(err => {
                 setSubmitting(false);

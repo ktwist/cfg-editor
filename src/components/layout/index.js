@@ -39,6 +39,8 @@ export default function Layout({title, auth=false, authFallback="/login", childr
             .then(res => res.json())
             .then(res => {
                 console.log("Config list --------------------<<<>>>> : ", res)
+                //Show only my configs
+                //const myConfigs = res.filter((el) => el.config_name.split('_')[el.config_name.split('_').length-1] === "erm")
                 setUserData(res);
             });
         } else {

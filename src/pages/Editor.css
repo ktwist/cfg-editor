@@ -12,3 +12,11 @@
     padding: 0;
     margin: 0 0 .5em;
 }
+
+.json-editor-wrapper {
+    width: 100%;
+}
+
+.ace_editor {
+    min-height: 150px;
+}
